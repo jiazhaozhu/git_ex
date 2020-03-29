@@ -1,0 +1,22 @@
+
+source /opt/intel/openvino/bin/setupvars.sh
+
+cd /opt/intel/openvino/deployment_tools/open_model_zoo/demos
+
+sudo ./build_demos.sh
+
+cd /home/jzz/omz_demos_build/intel64/Release
+
+./gaze_estimation_demo -m gaze-estimation-adas-0002.xml -m_fd face-detection-adas-0001.xml -m_hp head-pose-estimation-adas-0001.xml -m_lm facial-landmarks-35-adas-0002.xml -i ./vdata226/9.mp4 -o 9_res.avi -t 0.3
+
+ffmpeg -i 9_res.avi -vcodec h264 9_out.mp4
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/root/project/gaze_jzz/lib
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/opencl:/opt/intel/openvino_2019.3.376/deployment_tools/inference_engine/external/hddl/lib:/opt/intel/openvino_2019.3.376/deployment_tools/inference_engine/external/gna/lib:/opt/intel/openvino_2019.3.376/deployment_tools/inference_engine/external/mkltiny_lnx/lib:/opt/intel/openvino_2019.3.376/deployment_tools/inference_engine/external/tbb/lib:/opt/intel/openvino_2019.3.376/deployment_tools/inference_engine/lib/intel64:/opt/intel/openvino_2019.3.376/openvx/lib:/root/project/gaze_jzz/lib
+
+
+https://blog.csdn.net/qq_24755999/article/details/78722788
+MotionPro
+FileZilla
+
